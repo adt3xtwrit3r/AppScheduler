@@ -65,7 +65,7 @@ class HomeFragment : Fragment() {
         initClickListener()
         fetchAllInstalledApps()
 
-    }
+    } // this method containing some functions which are called when the View is created
 
     private fun initView() {
 
@@ -189,7 +189,7 @@ class HomeFragment : Fragment() {
 
         })
 
-    }
+    } // Check Local Database if the app is already scheduled for launch
 
     private fun timePicker(appInfo: AppTable, flag: String) {
         val calender = Calendar.getInstance()
@@ -289,9 +289,9 @@ class HomeFragment : Fragment() {
                 appAdapter.initLoad(installedAppsList, 0)
             }
 
-        }, 500)
+        }, 500) // used handler to postpone data load to adapter as it takes takes a while to fetch installed app data
 
-    }
+    } // fetching all installed app info
 
     @SuppressLint("QueryPermissionsNeeded") //should ask for manual permission on lower android os versions
     private fun populateDataList() {
