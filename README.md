@@ -7,3 +7,5 @@ Users can schedule an app launch at a given time which will be stored in local s
 Users can update or delete a scheduled app launch before or after a successful app launch.
 
 Successful launch Logs can be stored in local storage and time conflict can be solved also.
+
+in Android Studio press "ctrl" + "shift" + "-" and then "ctrl" + "+" to view comments properly
