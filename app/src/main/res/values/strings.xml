@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">App Scheduler</string>
+    <string name="waiting">Please Wait…</string>
+    <string name="all_apps">All Apps</string>
+    <string name="scheduled_apps">Scheduled Apps</string>
+    <string name="no_apps_found">No Apps Found</string>
+    <string name="system_apps">System Apps</string>
+</resources>
