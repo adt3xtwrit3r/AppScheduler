@@ -7,4 +7,4 @@ User can schedule an app launch in given time which will be stored in local stor
 User can update or delete a scheduled app launch before or after succesful app launch.
 
 Successful launch Logs can be stored in local stoarage and time conflict can be solved also. I will share that knowledge if I am called for the next stage
-of the interview proocess.
+of the interview process.
