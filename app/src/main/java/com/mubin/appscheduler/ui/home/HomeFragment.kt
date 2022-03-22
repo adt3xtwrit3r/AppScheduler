@@ -20,6 +20,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.mubin.appscheduler.api.models.app_model.AppTable
 import com.mubin.appscheduler.broadcast_receiver.OpenAppBroadcast
@@ -28,7 +29,6 @@ import com.mubin.appscheduler.helper.*
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
