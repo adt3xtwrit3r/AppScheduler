@@ -37,11 +37,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNavGraph() {
         navController = findNavController(R.id.navHostFragment)
-    }
+    } // initializing Navigation Controller
 
     private fun initToolbar() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
-    }
+    } // initializing toolbar with Navigation Controller
 
 }

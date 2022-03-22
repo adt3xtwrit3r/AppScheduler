@@ -28,7 +28,7 @@ fun Fragment.progressDialog(message: String = getString(R.string.waiting)): Prog
         setMessage(message)
     }
     return dialog
-}
+} // for showing progress Dialog // deprecated :( but my favourite
 
 fun Context.toast(msg: String?, time: Int = Toast.LENGTH_SHORT) {
     if (!msg.isNullOrEmpty()) {
@@ -41,7 +41,7 @@ fun Context.toast(msg: String?, time: Int = Toast.LENGTH_SHORT) {
         toast.show()
     }
 
-}
+} // for showing toasts
 
 fun Fragment.alert(
     title: CharSequence? = null,
@@ -73,7 +73,7 @@ fun Fragment.alert(
     textView?.textSize = 12F
 
     return builder.create()
-}
+} // For showing Alert dialog
 
 fun encodeToBase64(image: Bitmap, compressFormat: CompressFormat?, quality: Int): String? {
 
@@ -81,7 +81,7 @@ fun encodeToBase64(image: Bitmap, compressFormat: CompressFormat?, quality: Int)
     image.compress(compressFormat, quality, byteArrayOS)
     return Base64.encodeToString(byteArrayOS.toByteArray(), Base64.NO_WRAP)
 
-}
+} // bitmap to Base64 conversion
 
 fun drawableToBitmap(icon: Drawable): Bitmap {
 
@@ -89,7 +89,7 @@ fun drawableToBitmap(icon: Drawable): Bitmap {
 
     return bitmapDrawable.bitmap
 
-}
+} // drawable to bitmap conversion  // works for old android versions
 
 fun getBitmapFromDrawable(drawable: Drawable): Bitmap {
     val bmp = Bitmap.createBitmap(
@@ -101,7 +101,7 @@ fun getBitmapFromDrawable(drawable: Drawable): Bitmap {
     drawable.setBounds(0, 0, canvas.width, canvas.height)
     drawable.draw(canvas)
     return bmp
-}
+} // drawable to bitmap conversion
 
 fun base64ToImage(icon64: String): Bitmap {
 
@@ -109,4 +109,4 @@ fun base64ToImage(icon64: String): Bitmap {
 
     return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 
-}
+} // Base64 to bitmap conversion

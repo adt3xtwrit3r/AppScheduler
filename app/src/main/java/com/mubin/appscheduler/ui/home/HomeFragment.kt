@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.AlertDialog
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -78,7 +80,7 @@ class HomeFragment : Fragment() {
 
         binding?.toggleSystemApps?.isEnabled = true
 
-    }
+    } // initializing views
 
     private fun initTabLayout() {
 
@@ -128,7 +130,7 @@ class HomeFragment : Fragment() {
             }
 
         }
-    }
+    } //initializing tabLayout
 
     private fun initClickListener() {
 
@@ -156,9 +158,9 @@ class HomeFragment : Fragment() {
                 }
             }.show()
         }
-    }
+    } //handling click listeners
 
-    @SuppressLint("LogNotTimber")
+    @SuppressLint("LogNotTimber") //using Log instead of Timber as timber doesn't catch Long data type
     private fun checkIfAlreadyScheduled(AppInfo: AppTable) {
         val progressDialog = progressDialog()
         progressDialog.setCancelable(false)
@@ -202,14 +204,14 @@ class HomeFragment : Fragment() {
             initAlarm(selectedTimeStamp, appInfo, flag)
         }, calender.get(Calendar.HOUR_OF_DAY), calender.get(Calendar.MINUTE), false)
             .show()
-    }
+    } // for picking time
 
-    @SuppressLint("UnspecifiedImmutableFlag")
+    @SuppressLint("UnspecifiedImmutableFlag") //handled with version check
     private fun initAlarm(selectedTimeStamp: Long, appInfo: AppTable, flag: String) {
         val intent = Intent(requireActivity(), OpenAppBroadcast::class.java).apply {
             putExtra("package", "${appInfo.packageName}")
         }
-        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, FLAG_UPDATE_CURRENT)
         val alarmManager: AlarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, selectedTimeStamp, AlarmManager.INTERVAL_DAY, pendingIntent)
@@ -225,7 +227,7 @@ class HomeFragment : Fragment() {
         }
 
 
-    }
+    } // initializing broadcast receiver with alarm manager and pending intent
 
     private fun addToDb(selectedTimeStamp: Long, appInfo: AppTable) {
         val progressDialog = progressDialog()
@@ -239,7 +241,7 @@ class HomeFragment : Fragment() {
                 context?.toast("App is Scheduled", Toast.LENGTH_LONG)
             }
         })
-    }
+    } // Adding Schedule app info to Room Local Storage
 
     private fun updateSchedule(selectedTimeStamp: Long, appInfo: AppTable) {
 
@@ -264,9 +266,9 @@ class HomeFragment : Fragment() {
 
         })
 
-    }
+    } // Updating Scheduled app info on Room Local Storage
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n") //doesn't create that much problem
     private fun fetchAllInstalledApps() {
         val progressDialog = progressDialog()
         progressDialog.setCancelable(false)
@@ -291,7 +293,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    @SuppressLint("QueryPermissionsNeeded")
+    @SuppressLint("QueryPermissionsNeeded") //should ask for manual permission on lower android os versions
     private fun populateDataList() {
         val apps = requireActivity().packageManager.getInstalledPackages(0)
         for (i in apps.indices) {
@@ -314,9 +316,9 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-    }
+    } // insert app info into the data list to view on adapter
 
-    @SuppressLint("LogNotTimber", "SetTextI18n")
+    @SuppressLint("LogNotTimber")
     private fun fetchScheduledApps() {
 
         viewModel.getAllScheduledApps().observe(viewLifecycleOwner, androidx.lifecycle.Observer { ScheduledAppList ->
@@ -337,18 +339,22 @@ class HomeFragment : Fragment() {
 
         })
 
-    }
+    } // getting scheduled app info from Local Storage
 
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun cancelSchedule(appInfo: AppTable) {
         val intent = Intent(requireContext(), OpenAppBroadcast::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, PendingIntent.FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT)
+        } else {
+            PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, FLAG_UPDATE_CURRENT)
+        }
         val alarmManager: AlarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         if (pendingIntent != null) {
             alarmManager.cancel(pendingIntent)
             deleteFromDb(appInfo)
         }
-    }
+    } // canceling alarm manager
 
     private fun deleteFromDb(appInfo: AppTable) {
 
@@ -366,7 +372,8 @@ class HomeFragment : Fragment() {
 
         })
 
-    }
+    } // delete scheduled app info from Local Storage on Alarm Manager cancellation
+
 
     private fun String.capitalized(): String {
         return this.replaceFirstChar {
@@ -374,11 +381,12 @@ class HomeFragment : Fragment() {
                 it.titlecase(Locale.getDefault())
             else it.toString()
         }
-    }
+    } // for capitalizing the app names
+
 
     private fun isSystemPackage(pkgInfo: PackageInfo): Boolean {
         return pkgInfo.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
-    }
+    } // check is system app
 
     override fun onDestroyView() {
         super.onDestroyView()
