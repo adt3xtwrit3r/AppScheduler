@@ -6,5 +6,4 @@ For Navigation I have used the android navigation component. I have used Alarm M
 Users can schedule an app launch at a given time which will be stored in local storage (ROOM). 
 Users can update or delete a scheduled app launch before or after a successful app launch.
 
-Successful launch Logs can be stored in local storage and time conflict can be solved also. I would love to share that knowledge if I am called for the next 
-stage of the interview process.
+Successful launch Logs can be stored in local storage and time conflict can be solved also.
