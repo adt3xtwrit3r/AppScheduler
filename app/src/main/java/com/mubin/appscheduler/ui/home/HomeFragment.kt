@@ -208,10 +208,11 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("UnspecifiedImmutableFlag") //handled with version check
     private fun initAlarm(selectedTimeStamp: Long, appInfo: AppTable, flag: String) {
+
         val intent = Intent(requireActivity(), OpenAppBroadcast::class.java).apply {
             putExtra("package", "${appInfo.packageName}")
         }
-        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, PendingIntent.FLAG_ONE_SHOT)
         val alarmManager: AlarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, selectedTimeStamp, AlarmManager.INTERVAL_DAY, pendingIntent)
