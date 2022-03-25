@@ -212,7 +212,7 @@ class HomeFragment : Fragment() {
         val intent = Intent(requireActivity(), OpenAppBroadcast::class.java).apply {
             putExtra("package", "${appInfo.packageName}")
         }
-        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, PendingIntent.FLAG_ONE_SHOT)
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, FLAG_UPDATE_CURRENT)
         val alarmManager: AlarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, selectedTimeStamp, AlarmManager.INTERVAL_DAY, pendingIntent)
@@ -345,11 +345,8 @@ class HomeFragment : Fragment() {
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun cancelSchedule(appInfo: AppTable) {
         val intent = Intent(requireContext(), OpenAppBroadcast::class.java)
-        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, PendingIntent.FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT)
-        } else {
-            PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, FLAG_UPDATE_CURRENT)
-        }
+        val pendingIntent = PendingIntent.getBroadcast(requireContext(), appInfo.id, intent, FLAG_UPDATE_CURRENT)
+
         val alarmManager: AlarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
         if (pendingIntent != null) {
             alarmManager.cancel(pendingIntent)
