@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mubin.appscheduler">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <queries android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries android:name="android.permission.QUERY_ALL_PACKAGES" />
 
     <application
         android:name=".application.MainApplication"
@@ -14,20 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:name=".ui.SplashActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"/>
 
         <receiver
             android:name=".broadcast_receiver.OpenAppBroadcast"
             android:enabled="true"
             android:exported="false" />
-
     </application>
 
 </manifest>
