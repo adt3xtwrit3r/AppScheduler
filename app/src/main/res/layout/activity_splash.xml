@@ -8,6 +8,7 @@
     tools:context=".ui.SplashActivity">
 
     <LinearLayout
+        android:id="@+id/statelessLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -24,7 +25,8 @@
             android:src="@drawable/mujib"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/amarTv"
@@ -71,8 +73,22 @@
             android:src="@drawable/rcc"
             app:layout_constraintTop_toBottomOf="@+id/jonoSarthe"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/app_name" />
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loadingProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:indeterminate="true"
+        android:visibility="visible"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
