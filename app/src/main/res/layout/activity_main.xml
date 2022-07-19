@@ -18,9 +18,23 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:contentInsetStartWithNavigation="0dp"
-            tools:title="App Scheduler"
-            />
+            app:contentInsetStartWithNavigation="0dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আমার"
+                android:fontFamily="@font/pori"
+                android:textSize="32sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" রাজশাহী"
+                android:fontFamily="@font/liakat"
+                android:textSize="32sp"/>
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

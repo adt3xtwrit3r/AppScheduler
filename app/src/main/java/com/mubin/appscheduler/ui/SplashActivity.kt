@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.mubin.appscheduler.databinding.ActivitySplashBinding
+import com.mubin.appscheduler.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -20,9 +21,9 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
-        }, 1500)
+        }, 2000)
 
     }
 }

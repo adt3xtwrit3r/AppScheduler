@@ -15,8 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".LoginSignupActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +27,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="false"/>
+            android:name=".ui.home.HomeActivity"
+            android:exported="false" />
 
         <receiver
             android:name=".broadcast_receiver.OpenAppBroadcast"

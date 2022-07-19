@@ -11,12 +11,12 @@
         android:id="@+id/statelessLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/mujib"
@@ -28,31 +28,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="@string/app_name" />
 
-        <TextView
-            android:id="@+id/amarTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/pori"
-            android:text="আমার"
-            android:textSize="35sp"
-            android:textColor="@color/white"
-            android:includeFontPadding="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mujib"/>
-        <TextView
-            android:id="@+id/rajsahi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/liakat"
-            android:text="রাজশাহী"
-            android:textSize="35sp"
-            android:textColor="@color/white"
-            android:includeFontPadding="false"
-            app:layout_constraintTop_toBottomOf="@+id/amarTv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+       <ImageView
+           android:layout_width="200dp"
+           android:layout_height="150dp"
+           android:src="@drawable/amar_rajsahi_logo"/>
 
         <TextView
             android:id="@+id/jonoSarthe"
@@ -81,14 +60,15 @@
     <ProgressBar
         android:id="@+id/loadingProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="20dp"
+        android:layout_marginVertical="50dp"
         android:indeterminate="true"
         android:visibility="visible"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statelessLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

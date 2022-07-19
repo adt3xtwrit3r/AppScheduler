@@ -1,0 +1,50 @@
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="5dp"
+    android:elevation="5dp"
+    android:animateLayoutChanges="true"
+    app:cardPreventCornerOverlap="false">
+
+    <RelativeLayout
+        android:id="@+id/row_layout_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/app_name" />
+
+
+        <TextView
+            android:id="@+id/productName"
+            android:layout_below="@+id/productImage"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"/>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
